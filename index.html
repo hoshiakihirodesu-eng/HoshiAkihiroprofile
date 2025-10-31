@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Interactive Profile - Sky Blue Theme</title>
+  <title>3D Interactive Profile - Hoshi Akihiro</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
@@ -11,7 +11,10 @@
       overflow-x: hidden;
       perspective: 1200px;
       color: #0f2d50;
+      padding: env(safe-area-inset);
+      -webkit-tap-highlight-color: transparent;
     }
+
     canvas#particle-bg {
       position: fixed;
       top: 0;
@@ -21,6 +24,7 @@
       z-index: -1;
       pointer-events: none;
     }
+
     #scene-container {
       transform-style: preserve-3d;
       transition: transform 0.1s ease-out;
@@ -30,9 +34,11 @@
       background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(15px);
       overflow: hidden;
+      width: 100%;
+      max-width: 900px;
     }
+
     #glow-overlay {
-      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -43,114 +49,166 @@
       transition: background 0.2s ease;
       z-index: 5;
     }
+
     .glow {
       box-shadow: 0 0 20px rgba(104, 194, 255, 0.6), 0 0 60px rgba(104, 194, 255, 0.3);
     }
+
     .profile-card, .button-glow {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
     }
+
     .profile-card:hover, .button-glow:hover {
       transform: scale(1.05) rotateX(5deg) rotateY(-5deg);
       box-shadow: 0 0 30px rgba(104, 194, 255, 0.4);
     }
+
     .gambar1 {
       width: 50px;
       height: 50px;
       border-radius: 20px;
-
     }
-    .list-disc{
-      text-decoration: none;
+
+    .list-disc {
       list-style-type: none;
-       display: inline;
+      padding: 0;
+      margin: 0;
+    }
+
+    img.responsive-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      #scene-container {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .profile-card {
+        padding: 1rem;
+      }
+
+      .gambar1, .w-8 {
+        width: 35px !important;
+        height: 35px !important;
+      }
+
+      p, span {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .profile-card {
+        margin-bottom: 1rem;
+      }
     }
   </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-10">
+<body class="flex flex-col items-center justify-center min-h-screen p-6">
   <canvas id="particle-bg"></canvas>
 
-  <main id="scene-container" class="max-w-4xl w-full p-10 shadow-2xl glow relative">
+  <main id="scene-container" class="p-8 shadow-2xl glow relative">
     <div id="glow-overlay"></div>
+
     <header class="text-center mb-10">
-      <h1 class="text-4xl font-bold text-blue-600">HOSHI AKIHIRO</h1>
-      <p class="text-blue-800 opacity-80">VTUBER INDONESIA from vtubergraphic</p>
-      <img src="hoshicrop.png" alt="Hoshi Akihiro" class="mx-auto mt
+      <h1 class="text-4xl md:text-5xl font-bold text-blue-600">HOSHI AKIHIRO</h1>
+      <p class="text-blue-800 opacity-80 mb-4">VTUBER INDONESIA from vtubergraphic</p>
+      <img src="hoshicrop.png" alt="Hoshi Akihiro" class="responsive-img mx-auto">
     </header>
+
     <section class="profile-card bg-white bg-opacity-60 p-6 rounded-2xl mb-8">
       <h2 class="text-2xl font-semibold text-blue-700 mb-2">NYAHOOO~</h2>
-      <p class="text-gray-700">Hai~! Aku adalah seorang Vtuber yang berperan sebagai Ketua OSIS yang selalu ceria dan penuh semangat! 
-
-Sebagai ketua, tugasku bukan cuma ngatur kegiatan sekolah, tapi juga menjaga suasana tetap menyenangkan dan penuh tawa di setiap stream~
-
-Aku suka berbicara dengan para siswa, mendengarkan cerita kalian, dan tentunya... membuat hari kalian jadi lebih berwarna 
-
-Meskipun kadang tegas saat menjalankan peraturan sekolah , aku tetap punya sisi kocak dan lucu yang siap bikin suasana cair.
-
-Baik itu main game, karaoke, ngobrol santai, atau sekadar curhat bareng, aku ingin jadi ketua yang bisa kalian andalkan sekaligus teman yang bisa bikin kalian tersenyum </p>
+      <p class="text-gray-700 leading-relaxed text-justify">
+        Hai~! Aku adalah seorang Vtuber yang berperan sebagai Ketua OSIS yang selalu ceria dan penuh semangat!
+        <br><br>
+        Sebagai ketua, tugasku bukan cuma ngatur kegiatan sekolah, tapi juga menjaga suasana tetap menyenangkan dan penuh tawa di setiap stream~ Aku suka berbicara dengan para siswa, mendengarkan cerita kalian, dan tentunya... membuat hari kalian jadi lebih berwarna.
+        <br><br>
+        Baik itu main game, karaoke, ngobrol santai, atau sekadar curhat bareng, aku ingin jadi ketua yang bisa kalian andalkan sekaligus teman yang bisa bikin kalian tersenyum!
+      </p>
     </section>
+
     <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
       <div class="profile-card p-6 rounded-2xl bg-white bg-opacity-60">
         <h3 class="text-xl font-semibold text-blue-700 mb-2">SOCIAL</h3>
-        <ul class="list-disc pl-5 text-gray-700 space-y-3">
-  <li class="flex items-center space-x-3">
-    <img src="https://i.pinimg.com/736x/d6/be/cc/d6beccbf190a3eac0f35474e06afdcbf.jpg" class="w-8 h-8 rounded-full object-cover">
-    <a href="https://www.instagram.com/hoshiakihiro._/" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
-      <span>INSTAGRAM:</span>
-      <span class="font-semibold">@hoshiakihiro._</span>
-    </a>
-  </li>
+        <ul class="list-disc text-gray-700 space-y-3">
+          <li class="flex items-center space-x-3">
+            <img src="https://i.pinimg.com/736x/d6/be/cc/d6beccbf190a3eac0f35474e06afdcbf.jpg" class="w-8 h-8 rounded-full object-cover">
+            <a href="https://www.instagram.com/hoshiakihiro._/" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
+              <span>INSTAGRAM:</span>
+              <span class="font-semibold">@hoshiakihiro._</span>
+            </a>
+          </li>
 
-  <li class="flex items-center space-x-3">
-    <img src="https://i.pinimg.com/736x/b5/d4/ce/b5d4ce10a744861ffd3314d20d116976.jpg" class="w-8 h-8 rounded-full object-cover">
-    <a href="https://discord.gg/7GsS3dN7H5" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
-      <span>DISCORD:</span>
-      <span class="font-semibold">OSPEK ONLINE</span>
-    </a>
-  </li>
+          <li class="flex items-center space-x-3">
+            <img src="https://i.pinimg.com/736x/b5/d4/ce/b5d4ce10a744861ffd3314d20d116976.jpg" class="w-8 h-8 rounded-full object-cover">
+            <a href="https://discord.gg/7GsS3dN7H5" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
+              <span>DISCORD:</span>
+              <span class="font-semibold">OSPEK ONLINE</span>
+            </a>
+          </li>
 
-  <li class="flex items-center space-x-3">
-    <img src="https://i.pinimg.com/1200x/0d/5d/d4/0d5dd485fdb3e33a6a77bff6da306fb6.jpg" class="w-8 h-8 rounded-full object-cover">
-    <a href="https://youtube.com/@hoshiakihirodesu?si=JzE5QscP9l-aDbyW" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
-      <span>YOUTUBE:</span>
-      <span class="font-semibold">hoshiakihiro</span>
-    </a>
-  </li>
-</ul>
+          <li class="flex items-center space-x-3">
+            <img src="https://i.pinimg.com/1200x/0d/5d/d4/0d5dd485fdb3e33a6a77bff6da306fb6.jpg" class="w-8 h-8 rounded-full object-cover">
+            <a href="https://youtube.com/@hoshiakihirodesu?si=JzE5QscP9l-aDbyW" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
+              <span>YOUTUBE:</span>
+              <span class="font-semibold">hoshiakihiro</span>
+            </a>
+          </li>
+        </ul>
       </div>
+
       <div class="profile-card p-6 rounded-2xl bg-white bg-opacity-60">
         <h3 class="text-xl font-semibold text-blue-700 mb-2">FOH</h3>
-         <ul class="list-disc pl-5 text-gray-700 space-y-3">
-  <li class="flex items-center space-x-3">
-    <img src="rin.jpeg" class="w-8 h-8 rounded-full object-cover">
-    <a href="https://www.instagram.com/puding_coklat._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
-      <span>CHARACTER DESIGN:</span>
-      <span class="font-semibold">@puding_coklat._</span>
-    </a>
-  </li>
+        <ul class="list-disc text-gray-700 space-y-3">
+          <li class="flex items-center space-x-3">
+            <img src="rin.jpeg" class="w-8 h-8 rounded-full object-cover">
+            <a href="https://www.instagram.com/puding_coklat._/" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
+              <span>CHARACTER DESIGN:</span>
+              <span class="font-semibold">@puding_coklat._</span>
+            </a>
+          </li>
 
-  <li class="flex items-center space-x-3">
-    <img src="https://static.wixstatic.com/media/81a837_daf05546caa74cb9843d535e63ad15b9~mv2.webp/v1/fill/w_210,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo-vtubergraphic.webp" class="w-8 h-8 rounded-full object-cover">
-    <a href="https://www.vtubergraphic.com/" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
-      <span>CHARACTER RINGGING:</span>
-      <span class="font-semibold">VTUBERGRAPHIC</span>
-    </a>
-  </li>
-
-  
-</ul>
+          <li class="flex items-center space-x-3">
+            <img src="https://static.wixstatic.com/media/81a837_daf05546caa74cb9843d535e63ad15b9~mv2.webp/v1/fill/w_210,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/logo-vtubergraphic.webp" class="w-8 h-8 rounded-full object-cover">
+            <a href="https://www.vtubergraphic.com/" target="_blank" class="flex items-center space-x-2 hover:text-blue-500 transition">
+              <span>CHARACTER RIGGING:</span>
+              <span class="font-semibold">VTUBERGRAPHIC</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
+
     <footer class="text-center text-blue-700 opacity-70 mt-10">
       © 2025 HOSHI AKIHIRO | OFFICIAL VTUBER INDONESIA
     </footer>
   </main>
 
   <script>
+    // Efek rotasi 3D mengikuti kursor
     const scene = document.getElementById('scene-container');
     const glowOverlay = document.getElementById('glow-overlay');
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
 
     document.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -170,7 +228,7 @@ Baik itu main game, karaoke, ngobrol santai, atau sekadar curhat bareng, aku ing
     }
     animateRotation();
 
-    // Particle background
+    // Efek partikel cahaya lembut
     const canvas = document.getElementById('particle-bg');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -184,7 +242,8 @@ Baik itu main game, karaoke, ngobrol santai, atau sekadar curhat bareng, aku ing
 
     function createParticles() {
       particles = [];
-      for (let i = 0; i < 100; i++) {
+      const particleCount = window.innerWidth < 768 ? 40 : 100; // lebih sedikit di HP
+      for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
